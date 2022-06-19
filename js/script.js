@@ -12,29 +12,18 @@ var modeButtons = document.querySelectorAll(".mode");
 init();
 
 function init(){
-	setupModeButtons();
 	setupSquares();
 	reset();
 }
 
-function setupModeButtons(){
-	for(var i = 0; i < modeButtons.length; i++){
-		modeButtons[i].addEventListener("click", function(){
-			modeButtons[0].classList.remove("selected");
-			modeButtons[1].classList.remove("selected");
-			this.classList.add("selected");
-			this.textContent === "Easy" ? numSquares = 3: numSquares = 6;
-			reset();
-		});
-	}
-}
-
+//Add the event clicks on the squares (Wrong/Correct condition);
 function setupSquares(){
 	for(var i = 0; i < squares.length; i++){
 	//add click listeners to squares
 		squares[i].addEventListener("click", function(){
 			//grab color of clicked square
 			var clickedColor = this.style.background;
+			messageDisplay.removeAttribute('style');
 			//compare color to pickedColor
 			if(clickedColor === pickedColor){
 				messageDisplay.textContent = "Correct!";
@@ -43,22 +32,23 @@ function setupSquares(){
 				h1.style.background = clickedColor;
 			} else {
 				this.style.background = "#232323";
-				messageDisplay.textContent = "Try Again"
+				messageDisplay.textContent = "Try Again?"
 			}
 		});
 	}
 }
 
 
-
+//Start over again
 function reset(){
 	colors = generateRandomColors(numSquares);
 	//pick a new random color from array
 	pickedColor = pickColor();
 	//change colorDisplay to match picked Color
 	colorDisplay.textContent = pickedColor;
-	resetButton.textContent = "New Colors"
-	messageDisplay.textContent = "";
+	resetButton.textContent = "Reset"
+	messageDisplay.textContent = "Try Again?";
+	messageDisplay.style.color = "transparent";
 	//change colors of squares
 	for(var i = 0; i < squares.length; i++){
 		if(colors[i]){
@@ -75,6 +65,7 @@ resetButton.addEventListener("click", function(){
 	reset();
 })
 
+//Make all colors on the square equal, after guessed correctly.
 function changeColors(color){
 	//loop through all squares
 	for(var i = 0; i < squares.length; i++){
@@ -83,11 +74,13 @@ function changeColors(color){
 	}
 }
 
+//Choose the correct color
 function pickColor(){
 	var random = Math.floor(Math.random() * colors.length);
 	return colors[random];
 }
 
+//Fill the colors in an array
 function generateRandomColors(num){
 	//make an array
 	var arr = []
@@ -100,6 +93,7 @@ function generateRandomColors(num){
 	return arr;
 }
 
+//Generate a RGB
 function randomColor(){
 	//pick a "red" from 0 - 255
 	var r = Math.floor(Math.random() * 256);

@@ -37,11 +37,15 @@ h1 {
 }
 
 #message {
+	margin-left: 22%;
 	display: inline-block;
-	width: 20%;
 }
 
 #stripe {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+    align-items: center;
 	background: white;
 	height: 30px;
 	text-align: center;
