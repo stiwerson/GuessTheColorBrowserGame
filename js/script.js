@@ -31,7 +31,8 @@ function setupSquares(){
 				changeColors(clickedColor);
 				h1.style.background = clickedColor;
 			} else {
-				this.style.background = "#232323";
+				// this.style.background = "transparent";
+				this.style = "border-radius: 100%; transform: scale(0)"
 				messageDisplay.textContent = "Try Again?"
 			}
 		});
@@ -52,7 +53,9 @@ function reset(){
 	//change colors of squares
 	for(var i = 0; i < squares.length; i++){
 		if(colors[i]){
-			squares[i].style.display = "block"
+			squares[i].style.borderRadius = "";
+			squares[i].style.transform = "";
+			squares[i].style.display = "block";
 			squares[i].style.background = colors[i];
 		} else {
 			squares[i].style.display = "none";
@@ -70,6 +73,8 @@ function changeColors(color){
 	//loop through all squares
 	for(var i = 0; i < squares.length; i++){
 		//change each color to match given color
+		squares[i].style.borderRadius = "";
+		squares[i].style.transform = "";
 		squares[i].style.background = color;
 	}
 }
