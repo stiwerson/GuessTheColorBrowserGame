@@ -7,11 +7,15 @@ var colorDisplay = document.getElementById("colorDisplay");
 const messageDisplay = document.querySelector("#message");
 const h1 = document.querySelector("h1");
 const resetButton = document.querySelector("#reset");
-//Competitive mode variables
-var competitive = false;
-var points = 0;
-var tries = 6;
-var timer = 10;
+
+//Game manager used to set game properties
+var gameManager = {
+	screen: gameScreen(),
+	competitive: false,
+	points: 0,
+	trie: 6,
+	timer: 10
+}
 
 gameScreen();
 
@@ -25,7 +29,7 @@ function gameScreen(){
 function setupSquares(){
 	for(let square of squares){
 	//add click listeners to squares
-		square.addEventListener("click", () => {
+		square.addEventListener("click", function() {
 			//grab color of clicked square
 			let clickedColor = this.style.background;
 			messageDisplay.removeAttribute('style');
