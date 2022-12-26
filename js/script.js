@@ -1,28 +1,33 @@
-var numSquares = 6;
+//General Variables
+const numSquares = 6;
 var colors = [];
 var pickedColor;
 var squares = document.querySelectorAll(".square");
 var colorDisplay = document.getElementById("colorDisplay");
-var messageDisplay = document.querySelector("#message");
-var h1 = document.querySelector("h1");
-var resetButton = document.querySelector("#reset");
-var modeButtons = document.querySelectorAll(".mode");
+const messageDisplay = document.querySelector("#message");
+const h1 = document.querySelector("h1");
+const resetButton = document.querySelector("#reset");
+//Competitive mode variables
+var competitive = false;
+var points = 0;
+var tries = 6;
+var timer = 10;
 
+gameScreen();
 
-init();
-
-function init(){
+//Game Screen setup
+function gameScreen(){
 	setupSquares();
 	reset();
 }
 
 //Add the event clicks on the squares (Wrong/Correct condition);
 function setupSquares(){
-	for(var i = 0; i < squares.length; i++){
+	for(let square of squares){
 	//add click listeners to squares
-		squares[i].addEventListener("click", function(){
+		square.addEventListener("click", () => {
 			//grab color of clicked square
-			var clickedColor = this.style.background;
+			let clickedColor = this.style.background;
 			messageDisplay.removeAttribute('style');
 			//compare color to pickedColor
 			if(clickedColor === pickedColor){
@@ -108,4 +113,3 @@ function randomColor(){
 	var b = Math.floor(Math.random() * 256);
 	return "rgb(" + r + ", " + g + ", " + b + ")";
 }
-
